@@ -1,19 +1,20 @@
 <html>
 
-<head>
-    <title>Learn Codeigniter v3.1.10</title>
-    <style>
+    <head>
+        <!-- header section -->
+        <?php $this->load->view("include/header_other.php")?>
+    </head>
 
-    </style>
-</head>
+    <body>
 
-<body>
-    <h3>Welcome to Online Web Tutor</h3>
-    <p>This is the playlist of Codeigniter Framework v3.1.10</p>
+        <!-- content section -->
+        <?php $this->load->view("site/home_content.php")?>
 
-    <footer>
-        <p>All the code developed by Online Web Tutor</p>
-    </footer>
-</body>
+        <!-- Footer section -->
+        <?php $this->load->view("include/footer.php", array(
+            "name"=>$name,
+            "email_footer"=>$email
+        ))?>
 
+    </body>
 </html>

@@ -3,12 +3,47 @@
 
     class Site extends CI_Controller {
 
+        public function __construct(){
+            parent::__construct();
+            //$this->load->model("site_model");
+        }
         public function index(){
+            
+            $message = $this->site_model->run_my_query();
 
-            $this->load->view("include/header"); // header section
-            $this->load->view("site/site_index"); // body section
-            $this->load->view("include/footer"); // footer
+              $info_array = array(
+                "name" => "Online Web Tutor",
+                "email" => "onlinewebtutorhub@gmail.com",
+                "author" => "Sanjay Kumar",
+                "message" => $message,
+            );
 
+            //$this->load->view("include/header"); // header section
+            //$this->load->view("site/site_index"); // body section
+            //$this->load->view("include/footer", $info_array); // footer
+
+            $this->load->view("home_page.php", $info_array);
+        }
+
+        public function pass_var(){
+
+            /* $info_array = array(
+                "organisation_name"=>"Online Web Tutor",
+                "author_name"=>"Sanjay Kumar",
+                "email"=>"onlinewebtutorhub@gmail.com",
+            ); */
+
+            /* $info_array["organisation_name"] = "Online Web Tutor";
+            $info_array["author_name"] = "Sanjay Kumar";
+            $info_array["email"] = "onlinewebtutorhub@gmail.com"; */
+
+            //$this->load->view("site/pass_variable", $info_array);
+
+            $this->load->view("site/pass_variable", array(
+                "organisation_name"=>"Online Web Tutor",
+                "author_name"=>"Sanjay Kumar",
+                "email"=>"onlinewebtutorhub@gmail.com",
+            ));
         }
 
         public function about(){
@@ -29,5 +64,17 @@
 
             echo "<h3>This is our service page</h3><p>ID: ". $id . "AND service name: ". $name;
         }
+
+        //insert data into db table
+        function insert_data_into_table(){
+
+            $data = array(
+                "name" => "Learn CodeIgniter",
+                "email" => "ci@gmail.com",
+                "phone_number" => "120"
+            );
+            echo $this->site_model->insert_table_data($data);
+        }
+
     }
 ?>
